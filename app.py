@@ -29,3 +29,11 @@ def home_page():
 
     pets = Pet.query.all()
     return render_template("pet_list.html", pets=pets)
+
+
+@app.route("/add", methods=['GET', 'POST'])
+def add_pet():
+    """ Display or process the form for adding pets. """
+
+    form = AddPetForm()
+

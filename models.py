@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 def connect_db(app):
     """Connect this database to provided Flask app.
 
@@ -25,6 +24,7 @@ class Pet (db.Model):
                    primary_key=True,
                    autoincrement=True)
 
+                                                # which flask-sqlalchemy
     # TODO:why not string(20)
     name = db.Column(db.Text,
                      nullable=False)
@@ -33,7 +33,7 @@ class Pet (db.Model):
                        nullable=False)
 
     photo_url = db.Column(db.Text,
-                          default="",
+                          default='https://example.com/image.jpg',
                           nullable=False)
 
     age = db.Column(db.Text,
