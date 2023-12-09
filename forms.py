@@ -16,7 +16,7 @@ class AddPetForm(FlaskForm):
                                 ('cat', 'Cat'),
                                 ('dog', 'Dog'),
                                 ('porcupine', 'Porcupine')])
-    photo_url = TextAreaField("Photo URL", validator=[Optional()])
+    photo_url = TextAreaField("Photo URL", validators=[Optional()])
     age = SelectField("Pet age",
                       choices=[
                           ('baby', 'Baby'),
@@ -28,6 +28,6 @@ class AddPetForm(FlaskForm):
 class EditPetForm(FlaskForm):
     """ Form for editing info about a pet that exists already. """
 
-    photo_url = TextAreaField("Photo URL", validator=[Optional()])
+    photo_url = TextAreaField("Photo URL", validators=[Optional()])
     notes = TextAreaField("Notes", validators=[Optional()])
     available = BooleanField("Avaialble?")

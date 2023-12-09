@@ -25,7 +25,6 @@ class Pet (db.Model):
                    primary_key=True,
                    autoincrement=True)
 
-                                                # which flask-sqlalchemy
     # TODO:why not string(20)
     name = db.Column(db.Text,
                      nullable=False)

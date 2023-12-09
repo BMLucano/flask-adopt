@@ -65,16 +65,14 @@ def add_pet():
 def pet_info(pet_id):
     """ Show information about one pet and handle a form to edit the info. """
 
-    form = EditPetForm()
-
     pet = Pet.query.get_or_404(pet_id)
+    form = EditPetForm(obj=pet)
 
     if form.validate_on_submit():
-        pet.age = form.age.data
+        pet.photo_url = form.photo_url.data
         pet.notes = form.notes.data
         pet.available = form.available.data
 
-        # db.session.add()     # TODO: might need an add()
         db.session.commit()
 
         return redirect("/")
