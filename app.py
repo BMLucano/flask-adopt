@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, render_template, redirect, flash
+from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import connect_db, db, Pet
@@ -28,7 +28,7 @@ toolbar = DebugToolbarExtension(app)
 def home_page():
     """List all pets"""
 
-    pets = Pet.query.all()
+    pets = Pet.query.all()   # Gets sorted by pk, or at RANDOM. So sort!
     return render_template("pet_list.html", pets=pets)
 
 
@@ -41,7 +41,7 @@ def add_pet():
     if form.validate_on_submit():
         name = form.name.data
         species = form.species.data
-        photo_url = form.photo_url.data if form.photo_url.data else None
+        photo_url = form.photo_url.data if form.photo_url.data else None # ✓
         age = form.age.data
         notes = form.notes.data
 
@@ -62,14 +62,14 @@ def add_pet():
 
 
 @app.route('/<int:pet_id>', methods=['GET', 'POST'])
-def pet_info(pet_id):
+def pet_info(pet_id):   # verbier name for fn (include *edit* functionality)
     """ Show information about one pet and handle a form to edit the info. """
 
     pet = Pet.query.get_or_404(pet_id)
     form = EditPetForm(obj=pet)
 
     if form.validate_on_submit():
-        pet.photo_url = form.photo_url.data
+        pet.photo_url = form.photo_url.data   # needs to default to DEF_IMG
         pet.notes = form.notes.data
         pet.available = form.available.data
 
